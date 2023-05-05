@@ -64,8 +64,6 @@ public class Program {
 		for(int i = 0; i < jedisDeJava.size(); i++) {
 			jediActual = jedisDeJava.get(i);
 			System.out.println(jediActual);
-		}
-		
-		
+		}		
 	}
 }
