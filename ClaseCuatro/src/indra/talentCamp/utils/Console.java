@@ -1,11 +1,11 @@
-package indra.utils;
+package indra.talentCamp.utils;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Consola {
+public class Console {
 	
-	private boolean esNumerico(String numero) {
+	private static boolean esNumerico(String numero) {
 		// Capturar las excepciones
 		// y que devuelva si el string introducido es numerico
 		try {
@@ -33,7 +33,7 @@ public class Consola {
 		return Integer.valueOf(numero);			
 	}
 	
-	public int readInt(String prompt) {	// Sobrecarga
+	public static int readInt(String prompt) {	// Sobrecarga
 		String numero = null;
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
@@ -54,7 +54,6 @@ public class Consola {
 		int numSecreto = r.nextInt(1, maxValor);
 		boolean adivinado = false;
 		
-		Scanner in = new Scanner(System.in);
 		int numero = -1;
 		int intentos = 1;
 		
@@ -101,5 +100,17 @@ public class Consola {
 			System.out.println("El número " + numero + " es primo");
 		else
 			System.out.println("El número " + numero + " no es primo");
+	}
+	
+	public static String readString(String prompt) {
+		Scanner in = new Scanner(System.in);		
+		String input = "";
+		
+		do {
+			System.out.println(prompt);
+			input = in.nextLine();
+		} while(input.length() == 0);
+		
+		return input;
 	}
 }
