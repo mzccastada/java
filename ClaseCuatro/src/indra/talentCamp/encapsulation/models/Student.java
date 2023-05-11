@@ -64,8 +64,14 @@ public class Student extends Person {
 	
 	@Override
 	public String toString() {
-		return this.getName() + " (Documento: " + this.getDocument() + ")" + "\n" + 
-				"[" + this.getAddress() + "]\n" + 
-				(this.isPrefersFrontEnd() ? "Entusiasta del FrontEnd" : "Entusiasta del BackEnd");
+//		return this.getName() + " (Documento: " + this.getDocument() + ")" + "\n" + 
+//				"[" + this.getAddress() + "]\n" + 
+//				(this.isPrefersFrontEnd() ? "Entusiasta del FrontEnd" : "Entusiasta del BackEnd");
+		
+		return String.format("%s ()%d \n [%s] \n %s", 
+				this.getName(), 
+				this.getDocument(), 
+				this.getAddress(), 
+				(this.isPrefersFrontEnd() ? "Entusiasta del FrontEnd" : "Entusiasta del BackEnd"));
 	}
 }

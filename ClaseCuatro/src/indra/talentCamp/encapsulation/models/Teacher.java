@@ -27,9 +27,11 @@ public class Teacher extends Person {
 	}	
 	
 	@Override
-	public String toString() {
-		return this.getName() + " (Documento: " + this.getDocument() + ")" + "\n" + 
-				"[" + this.getAddress() + "]\n" + 
-				"Especialista en " + this.getPreferedLanguage();
+	public String toString() {		
+		return String.format("%s ()%d \n [%s] \n Especialista en %s", 
+				this.getName(), 
+				this.getDocument(), 
+				this.getAddress(), 
+				this.getPreferedLanguage());
 	}
 }
