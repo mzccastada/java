@@ -3,6 +3,9 @@ package indra.talentCamp.interfaces;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import indra.talentCamp.generics.Operation;
+import indra.talentCamp.generics.Safe;
+
 public class Program {
 
 	public static void main(String[] args) {
@@ -56,6 +59,42 @@ public class Program {
 		Collections.sort(shapes);
 		shapes.stream().forEach(System.out::println);
 		
+		/* Ejemplo de uso de una interfaz existente */
+		OperationInteger sumaInt = (a,b)->(a+b);
+		int resInt = sumaInt.operate(2, 2);
+		System.out.println("Sumar 2+2 es " + resInt);
+			
 		
+		/* Ejemplo de uso de una interfaz funcional */
+		Operation<Integer> sum = (a,b) -> (a+b);
+		Integer res = sum.operate(2,2);
+		System.out.println("Sumar 2+2 es " + res);
+		
+		
+		/* Ejemplo Caja Fuerte que almacena Strings */
+		Safe<String, String> keyword = new Safe<>("Ábrete Sésamo");
+		keyword.saveValue("La clave del home banking");
+		String correctKey = keyword.readValue("Ábrete Sésamo");
+		System.out.println("La clave es: " + correctKey);
+		
+		System.out.println("Intentando acceder con una clave inválida");
+		try {
+			String wrongKey = keyword.readValue("qwerty");
+		} catch(Exception ex) {
+			System.err.println(ex.getMessage());
+		}
+		
+		/* Ejemplo Caja Fuerte que almacena Integers */
+		Safe<Integer, String> keyNumber= new Safe<>("Ábrete Sésamo");
+		keyNumber.saveValue(566);
+		Integer correctNumber = keyNumber.readValue("Ábrete Sésamo");
+		System.out.println("La clave es: " + correctNumber);
+		
+		System.out.println("Intentando acceder con una clave inválida");
+		try {
+			Integer wrongNumber = keyNumber.readValue("qwerty");
+		} catch(Exception ex) {
+			System.err.println(ex.getMessage());
+		}		
 	}
 }
