@@ -3,22 +3,25 @@ package banco;
 public class Cliente {
 	
 	private String nombre;
-	private int numDocumento;
+	private String apellido;
+	private int identificador;
 	
-	public Cliente(String nombre, int num_documento) {
+	public Cliente(String nombre, String apellido, int identificador) {
 		super();
 		this.nombre = nombre;
-		this.numDocumento = num_documento;
+		this.apellido = apellido;
+		this.identificador = identificador;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
-
-	public int getNumDocumento() {
-		return numDocumento;
+	
+	public String getApellido() {
+		return apellido;
 	}
 	
-	
-
+	public int getIdentificador() {
+		return identificador;
+	}
 }

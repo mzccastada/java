@@ -8,15 +8,12 @@ public class CuentaCorriente extends CuentaBancaria {
 	}
 
 	@Override
-	public void depositar(double cantidad) {
-		// TODO Auto-generated method stub
-		
+	public void extraer(double importe) {
+		this.movimientos.add(new Movimiento(-importe));
 	}
 
 	@Override
-	public void extraer(double cantidad) {
-		// TODO Auto-generated method stub
-		
+	public void extraer(double importe, String concepto) {
+		this.movimientos.add(new Movimiento(-importe, concepto));		
 	}
-
 }
