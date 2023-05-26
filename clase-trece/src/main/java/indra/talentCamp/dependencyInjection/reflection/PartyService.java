@@ -14,7 +14,7 @@ public class PartyService {
 			//Esta forma sirve solamente para las clases que tienen constructores
 			//sin parametros 
 			//Parameterless constructor
-			this.repository = PartyService.repositoryClass.newInstance();
+			this.repository = PartyService.repositoryClass.getConstructor().newInstance();
 		} catch(Exception e) {
 			throw new Error("El constructor es privado");
 		}

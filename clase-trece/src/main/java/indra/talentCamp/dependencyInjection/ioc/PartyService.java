@@ -4,6 +4,10 @@ public class PartyService {
 	
 	private Repository repository;
 	
+	public PartyService() {
+		super();
+	}
+	
 	//Package-protected: desde fuera de este paquete no se puede crear un PartyService
 	PartyService(Repository repository) {
 		this.repository = repository;
