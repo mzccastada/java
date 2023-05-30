@@ -20,5 +20,17 @@ public class AutomovilServiceImplementation implements AutomovilService {
 			setElectrico(true);
 		}};	*/
 		return this.repository.findById(55);
-	}	
+	}
+	
+	@Override
+	public void registrarAutomovil(Automovil autoNuevo) {
+		//Supongo que determina que es una marca de autos 
+		//electricos invocando otra API
+		if(autoNuevo.getMarca().equalsIgnoreCase("Tesla" )) {
+			autoNuevo.setElectrico(true);
+		} else {
+			autoNuevo.setElectrico(false);
+		}
+		this.repository.save(autoNuevo);
+	}
 }

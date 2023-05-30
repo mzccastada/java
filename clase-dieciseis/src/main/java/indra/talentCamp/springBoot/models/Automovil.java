@@ -2,10 +2,21 @@ package indra.talentCamp.springBoot.models;
 
 import lombok.*;
 
-@Getter @Setter
-public class Automovil {	
+@Getter
+public class Automovil {
+	@Setter
 	private int id;
+	@Setter
 	private String marca;
 	private String matricula;
+	@Setter
 	private boolean electrico;
+
+	public void setMatricula(String matricula) {
+		if (!marca.matches("^[0-9]{4}[A-Z]{2}$")) { // Si la matricula contiene 4 numeros y 2 letras
+			throw new Error("Validation Error : La matricula no tiene 4 números y 2 letras");
+		}
+
+		this.matricula = matricula;
+	}
 }
