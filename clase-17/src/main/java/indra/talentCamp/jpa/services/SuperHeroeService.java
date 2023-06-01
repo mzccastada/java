@@ -1,5 +1,7 @@
 package indra.talentCamp.jpa.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import indra.talentCamp.jpa.models.*;
@@ -16,5 +18,9 @@ public class SuperHeroeService {
 		heroe.validate();	
 		
 		this.repository.save(heroe);
+	}
+
+	public List<SuperHeroe> obtenerListaAvengers() throws BusinessException {
+		return this.repository.findAll();
 	}
 }

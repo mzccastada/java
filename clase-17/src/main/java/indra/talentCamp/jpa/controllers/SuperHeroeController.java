@@ -8,6 +8,7 @@ import indra.talentCamp.jpa.dto.*;
 import indra.talentCamp.jpa.models.BusinessException;
 import indra.talentCamp.jpa.models.SuperHeroe;
 import indra.talentCamp.jpa.services.SuperHeroeService;
+import java.util.List;
 
 @RestController
 public class SuperHeroeController {
@@ -16,6 +17,18 @@ public class SuperHeroeController {
 	private SuperHeroeService service;
 
 	// GET /api/hero --> Me lista todos
+	@RequestMapping(value = "/api/hero", method = RequestMethod.GET)
+	public ResponseEntity<?> avengerAssemble() {
+		try {
+			List<SuperHeroe> avengers = this.service.obtenerListaAvengers();
+			return new ResponseEntity<>(avengers, HttpStatus.OK);
+
+		} catch (BusinessException ex) {
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	// POST /api/hero --> Agregar uno nuevo
 	@RequestMapping(value = "/api/hero", method = RequestMethod.POST)
@@ -23,20 +36,17 @@ public class SuperHeroeController {
 		try {
 			SuperHeroe avenger = new SuperHeroe();
 			avenger.setNombreArtistico(request.getName());
-			avenger.setSuperpoder(request.getPower());			
-			
+			avenger.setSuperpoder(request.getPower());
+
 			this.service.registrarAvenger(avenger);
-			
-			return new ResponseEntity<>("Heroe Registrado en acuerdo de Socovia",
-					HttpStatus.OK);
+
+			return new ResponseEntity<>("Heroe Registrado en acuerdo de Socovia", HttpStatus.OK);
 		} catch (BusinessException ex) {
-			return new ResponseEntity<>(ex.getMessage(), 
-					HttpStatus.BAD_REQUEST);
-			//Sugerencia: En general error de validacion o negocio --> BadRequest
-			//			  Error base de datos, memoria, etc --> 5xx
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+			// Sugerencia: En general error de validacion o negocio --> BadRequest
+			// Error base de datos, memoria, etc --> 5xx
 		} catch (Exception ex) {
-			return new ResponseEntity<>(ex.getMessage(),
-					HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
